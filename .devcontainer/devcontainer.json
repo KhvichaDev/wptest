@@ -1,8 +1,6 @@
 {
   "name": "WordPress Codespace DevContainer",
-  "dockerComposeFile": [
-    "../docker-compose.yml"
-  ],
+  "dockerComposeFile": ["docker-compose.yml"],
   "service": "wordpress",
   "workspaceFolder": "/var/www/html",
   "remoteUser": "root",
