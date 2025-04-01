@@ -1,10 +1,17 @@
 {
-  "name": "WordPress Codespace DevContainer",
-  "dockerComposeFile": ["docker-compose.yml"],
+  "name": "WordPress Site Dev",
+  "dockerComposeFile": "docker-compose.yml",
   "service": "wordpress",
   "workspaceFolder": "/var/www/html",
-  "remoteUser": "root",
-  "forwardPorts": [
-    8080
-  ]
+  "forwardPorts": [80, 8080],
+  "postCreateCommand": "chmod -R 777 /var/www/html",
+  "postStartCommand": "bash -c 'until wp db check --allow-root; do echo \"⏳ Waiting for the database to be ready...\"; sleep 5; done; if ! wp core is-installed --allow-root; then echo \"🚀 Installing WordPress...\"; wp core install --url=\"https://${CODESPACE_NAME}-80.app.github.dev\" --title=\"My WP\" --admin_user=\"admin\" --admin_password=\"admin123\" --admin_email=\"admin@example.com\" --skip-email --allow-root; echo \"✅ WordPress installation complete!\"; else echo \"✅ WordPress already installed.\"; fi;'",
+  "customizations": {
+    "vscode": {
+      "extensions": [
+        "bmewburn.vscode-intelephense-client",
+        "esbenp.prettier-vscode"
+      ]
+    }
+  }
 }
