@@ -3,8 +3,8 @@
   "dockerComposeFile": "docker-compose.yml",
   "service": "wordpress",
   "workspaceFolder": "/var/www/html",
-  "forwardPorts": [80, 8080],
-  "postCreateCommand": "chmod -R 777 /var/www/html",
+  "appPort": ["8000:8000", "8080:8080"]
+  "postCreateCommand": "sudo chown -R www-data:www-data /var/www/html && sudo find /var/www/html -type d -exec chmod 755 {} \\; && sudo find /var/www/html -type f -exec chmod 644 {} \\;"
   "customizations": {
     "vscode": {
       "extensions": [
