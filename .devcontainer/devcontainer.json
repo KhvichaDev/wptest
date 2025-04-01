@@ -1,45 +1,16 @@
 {
-  "name": "WordPress Development Environment",
+  "name": "WordPress Site Dev",
   "dockerComposeFile": "docker-compose.yml",
   "service": "wordpress",
   "workspaceFolder": "/var/www/html",
-  
-  "forwardPorts": [8000, 8080],
-  "appPort": ["8000:8000", "8080:8080"],
-  
-  "postCreateCommand": "sudo chown -R www-data:www-data /var/www/html && sudo find /var/www/html -type d -exec chmod 755 {} \\; && sudo find /var/www/html -type f -exec chmod 644 {} \\; && sudo apt-get update && sudo apt-get install -y git nano",
-  
+  "forwardPorts": [80, 8080],
+  "postCreateCommand": "chmod -R 777 /var/www/html",
   "customizations": {
     "vscode": {
       "extensions": [
         "bmewburn.vscode-intelephense-client",
-        "esbenp.prettier-vscode",
-        "wordpress-developers.wordpress-development",
-        "felixfbecker.php-debug",
-        "mikestead.dotenv",
-        "dbaeumer.vscode-eslint"
-      ],
-      "settings": {
-        "php.validate.executablePath": "/usr/local/bin/php",
-        "files.autoSave": "afterDelay",
-        "editor.formatOnSave": true
-      }
+        "esbenp.prettier-vscode"
+      ]
     }
-  },
-  
-  "features": {
-    "ghcr.io/devcontainers/features/php:1": {
-      "version": "8.3",
-      "installComposer": true
-    },
-    "ghcr.io/devcontainers/features/node:1": {
-      "version": "lts"
-    }
-  },
-  
-  "remoteUser": "www-data",
-  
-  "onCreateCommand": "echo 'Container is being created...'",
-  "updateContentCommand": "echo 'Updating content...'",
-  "postStartCommand": "echo 'WordPress environment ready! Access it at port 8000 and phpMyAdmin at 8080'"
+  }
 }
