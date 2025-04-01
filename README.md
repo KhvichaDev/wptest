@@ -85,9 +85,8 @@ Access PhpMyAdmin at: https://<CODESPACE_NAME>-8080.app.github.dev
 Credentials
 
 WordPress Admin Username: admin
-
 WordPress Admin Password: admin123
-
+PhpMyAdmin Root Username: root
 PhpMyAdmin Root Password: rootpass
 
 Troubleshooting
