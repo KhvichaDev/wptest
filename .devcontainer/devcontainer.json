@@ -1,16 +1,12 @@
 {
-  "name": "WordPress Site Dev",
-  "dockerComposeFile": "docker-compose.yml",
+  "name": "WordPress Codespace DevContainer",
+  "dockerComposeFile": [
+    "../docker-compose.yml"
+  ],
   "service": "wordpress",
   "workspaceFolder": "/var/www/html",
-  "forwardPorts": [80, 8080],
-  "postCreateCommand": "chmod -R 777 /var/www/html",
-  "customizations": {
-    "vscode": {
-      "extensions": [
-        "bmewburn.vscode-intelephense-client",
-        "esbenp.prettier-vscode"
-      ]
-    }
-  }
+  "remoteUser": "root",
+  "forwardPorts": [
+    8080
+  ]
 }
