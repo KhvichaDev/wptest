@@ -1,10 +1,10 @@
-version: '3.8'
+version: '3.1'
 
 services:
   wordpress:
-    image: wordpress:php8.3-apache
+    image: wordpress:latest
     ports:
-      - "8000:80"
+      - "80:80"
     environment:
       WORDPRESS_DB_HOST: db
       WORDPRESS_DB_USER: wp_user
@@ -12,13 +12,9 @@ services:
       WORDPRESS_DB_NAME: wp_db
     volumes:
       - wordpress_data:/var/www/html
-    depends_on:
-      db:
-        condition: service_healthy
 
   db:
-    image: mysql:8.0
-    command: --default-authentication-plugin=mysql_native_password
+    image: mysql:5.7
     environment:
       MYSQL_DATABASE: wp_db
       MYSQL_USER: wp_user
@@ -26,11 +22,6 @@ services:
       MYSQL_ROOT_PASSWORD: rootpass
     volumes:
       - db_data:/var/lib/mysql
-    healthcheck:
-      test: ["CMD", "mysqladmin", "ping", "-h", "localhost"]
-      interval: 5s
-      timeout: 10s
-      retries: 5
 
   phpmyadmin:
     image: phpmyadmin/phpmyadmin
